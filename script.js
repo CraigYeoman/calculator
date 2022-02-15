@@ -26,3 +26,9 @@ const multiply = function(a, b) {
 const divide = function(a, b) {
     return a / b
 }
+
+const buttons = document.querySelectorAll('btn')
+const currentInput = document.getElementById('current-input')
+
+let displayValue = ''
+
