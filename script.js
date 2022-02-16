@@ -27,8 +27,26 @@ const divide = function(a, b) {
     return a / b
 }
 
-const buttons = document.querySelectorAll('btn')
-const currentInput = document.getElementById('current-input')
+const buttons = document.querySelectorAll('button')
+const userInput = document.getElementById('user-input')
+const pastInput = document.getElementById('past-input')
 
 let displayValue = ''
 
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        userInput.textContent += button.id;
+        displayValue += button.id;
+        if (button.id === '+' || button.id === '-'
+         || button.id === '*' || button.id === '/') {
+             let b = displayValue;
+             pastInput.textcontent = displayValue
+             displayValue = ""
+             console.log(b);
+         }
+
+    }
+    
+    
+    )
+})
