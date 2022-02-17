@@ -31,18 +31,24 @@ const buttons = document.querySelectorAll('button')
 const userInput = document.getElementById('user-input')
 const pastInput = document.getElementById('past-input')
 
-let displayValue = ''
+let displayValue = '';
+let pastDisplayValue = '';
 
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
-        userInput.textContent += button.id;
-        displayValue += button.id;
         if (button.id === '+' || button.id === '-'
          || button.id === '*' || button.id === '/') {
-             let b = displayValue;
-             pastInput.textcontent = displayValue
-             displayValue = ""
-             console.log(b);
+             pastDisplayValue = displayValue;
+             pastInput.textcontent = pastDisplayValue;
+             displayValue = "";
+             userInput.textContent = "";
+             console.log(pastDisplayValue);
+         } else if (button.id === '1' || button.id === '2' || button.id === '3' || 
+         button.id === '4' || button.id === '5' || button.id === '6' || 
+         button.id === '7' || button.id === '8' || button.id === '9' || 
+         button.id === '0' || button.id === '.') {
+             userInput.textContent += button.id;
+             displayValue +=button.id;
          }
 
     }
