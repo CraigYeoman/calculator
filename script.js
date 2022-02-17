@@ -1,12 +1,12 @@
 const operate = function(x, a, b) {
     switch (x) {
-        case "add":
+        case "+":
             return add(a,b);
-        case "substract":
+        case "-":
             return substract(a,b);
-        case "multiply":
+        case "x":
             return multiply(a,b);
-        case "divide":
+        case "/":
             return divide(a,b);  
     }
 }
@@ -38,21 +38,34 @@ buttons.forEach((button) => {
     button.addEventListener('click', () => {
         if (button.id === '+' || button.id === '-'
          || button.id === '*' || button.id === '/') {
-             pastDisplayValue = displayValue;
-             pastInput.textcontent = pastDisplayValue;
-             displayValue = "";
-             userInput.textContent = "";
-             console.log(pastDisplayValue);
-         } else if (button.id === '1' || button.id === '2' || button.id === '3' || 
+             let operator = button.id
+             operations(pastDisplayValue, displayValue, operator);
+            
+             //pastDisplayValue = displayValue;
+             //pastInput.textContent = pastDisplayValue;
+             //displayValue = "";
+            // userInput.textContent = "";
+            // console.log(pastDisplayValue);
+        } else if (button.id === '1' || button.id === '2' || button.id === '3' || 
          button.id === '4' || button.id === '5' || button.id === '6' || 
          button.id === '7' || button.id === '8' || button.id === '9' || 
          button.id === '0' || button.id === '.') {
              userInput.textContent += button.id;
              displayValue +=button.id;
-         }
+        }
 
-    }
-    
-    
-    )
+    })
 })
+
+const operations = function(pastDisplayValue, displayValue, operator) {
+    if (pastInput.textContent === '') {
+        pastDisplayValue = displayValue;
+        pastInput.textContent = pastDisplayValue;
+        displayValue = "";
+        userInput.textContent = "";
+    } else {
+        let answer = operate(operator, pastInput.textContent, userInput.textContent);
+        pastInput.textContent = 
+        userInput.textContent = answer
+    }
+}

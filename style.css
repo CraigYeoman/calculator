@@ -22,19 +22,16 @@ body {
     height: 75px;
     background-color: rgba(7, 11, 255, 0.48);;
     margin: 10px;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-end;
 }
 
 .past-input {
     height: 24px;
-    
+    text-align: right;
 }
 
 .user-input {
     height: 36px;
-    
+    text-align: right;
 }
 
 .grid {
