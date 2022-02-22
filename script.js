@@ -4,7 +4,7 @@ const operate = function(x, a, b) {
             return add(a,b);
         case "-":
             return substract(a,b);
-        case "x":
+        case "*":
             return multiply(a,b);
         case "/":
             return divide(a,b);  
@@ -12,19 +12,19 @@ const operate = function(x, a, b) {
 }
 
 const add = function(a, b) {
-    return a + b
+    return Number(a) + Number(b)
 }
 
 const substract = function(a, b) {
-    return a - b
+    return Number(a) - Number(b)
 }
 
 const multiply = function(a, b) {
-    return a * b
+    return Number(a) * Number(b)
 }
 
 const divide = function(a, b) {
-    return a / b
+    return Number(a) / Number(b)
 }
 
 const buttons = document.querySelectorAll('button')
@@ -33,39 +33,61 @@ const pastInput = document.getElementById('past-input')
 
 let displayValue = '';
 let pastDisplayValue = '';
+let operator = '';
+let answer = '?';
 
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
         if (button.id === '+' || button.id === '-'
          || button.id === '*' || button.id === '/') {
-             let operator = button.id
-             operations(pastDisplayValue, displayValue, operator);
             
-             //pastDisplayValue = displayValue;
-             //pastInput.textContent = pastDisplayValue;
-             //displayValue = "";
-            // userInput.textContent = "";
-            // console.log(pastDisplayValue);
+            check2();
         } else if (button.id === '1' || button.id === '2' || button.id === '3' || 
          button.id === '4' || button.id === '5' || button.id === '6' || 
          button.id === '7' || button.id === '8' || button.id === '9' || 
          button.id === '0' || button.id === '.') {
-             userInput.textContent += button.id;
-             displayValue +=button.id;
+            check();
+            displayValue += button.id;
+            userInput.textContent = displayValue;
+        } else if (button.id === 'clear') {
+            displayValue = "";
+            pastDisplayValue = "";
+            userInput.textContent = "";
+            pastInput.textContent = "";
+        } else if (button.id === 'delete') {
+            displayValue = "";
+            userInput.textContent = "";
+        } else if (button.id = '=') {
+            equals()
         }
-
     })
 })
 
-const operations = function(pastDisplayValue, displayValue, operator) {
-    if (pastInput.textContent === '') {
+const check = function() {
+    if (displayValue === answer) {
         pastDisplayValue = displayValue;
-        pastInput.textContent = pastDisplayValue;
-        displayValue = "";
-        userInput.textContent = "";
-    } else {
-        let answer = operate(operator, pastInput.textContent, userInput.textContent);
-        pastInput.textContent = 
-        userInput.textContent = answer
+        pastInput.textContent = pastDisplayValue
+        displayValue = ''
     }
+}
+
+const check2 = function() {
+    if (!(pastDisplayValue === "") && !(operator === "") && !(displayValue === "")) {
+        equals();
+        //(pastDisplayValue === answer) {
+        //pastInput.textContent = pastDisplayValue + ' ' + operator;
+    } else {
+        operator = button.id;
+        pastDisplayValue = displayValue;
+        pastInput.textContent = pastDisplayValue + ' ' + operator;
+        userInput.textContent = "";
+        displayValue = '';
+    }
+}
+
+const equals = function() {
+    answer = operate(operator, pastDisplayValue, displayValue);
+            userInput.textContent = answer;
+            pastInput.textContent = pastDisplayValue + ' ' + operator + ' ' + displayValue;
+            displayValue = answer
 }
