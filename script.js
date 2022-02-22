@@ -27,7 +27,12 @@ const divide = function(a, b) {
     return Number(a) / Number(b)
 }
 
-const buttons = document.querySelectorAll('button')
+const numberButtons = document.querySelectorAll('[data-number]');
+const operationButtons = document.querySelectorAll('[data-operation]');
+const equalsButton = document.querySelector('[data-equals]');
+const clearButton = document.querySelector('[data-clear]');
+const deleteButton = document.querySelector('[data-delete]');
+
 const userInput = document.getElementById('user-input')
 const pastInput = document.getElementById('past-input')
 
