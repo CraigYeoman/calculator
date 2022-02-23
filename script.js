@@ -53,13 +53,13 @@ const equals = function() {
             displayValue = "";
 };
 
-
 //EventListeners
 numberButtons.forEach((button) => {
     button.addEventListener('click', () => {
         if(answer !== "") {
             pastInput.textContent = answer + " " + operator;
         }
+        if (button.id === '.' && displayValue.includes('.')) return;
         displayValue += button.id;
         userInput.textContent = displayValue;
         console.log(displayValue);
